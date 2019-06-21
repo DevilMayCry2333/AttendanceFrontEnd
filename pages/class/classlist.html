@@ -83,7 +83,7 @@
 								//请求方式  
 								type: "POST",
 								//文件位置  
-								url: "http://localhost:8080/unnamed/QueryStaServlet",
+								url: "http://localhost:8080/AttendanceBackEnd_Web3_exploded/ClassesServlet",
 								//返回数据格式为json,也可以是其他格式如  
 								dataType: "json",
 								//请求成功后要执行的函数，拼接html  
@@ -94,8 +94,10 @@
 										str += "<tr>";
 										str += "<td></td>";
 										str += "<td>" + n.Id + "</td>";
-										str += "<td>" + n.JobId + "</td>";
-										str += "<td>" + n.Pname + "</td>";
+										str += "<td>" + n.ClassId + "</td>";
+										str += "<td>" + n.Cname + "</td>";
+										str += "<td>" + n.Mtime + "</td>";
+										str += "<td>" + n.Atime + "</td>";
 										str += "</tr>";
 									});
 									$("#memberList").append(str);
