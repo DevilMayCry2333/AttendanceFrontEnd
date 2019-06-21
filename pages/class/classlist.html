@@ -9,6 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<link rel="stylesheet" href="../../static/css/font.css">
 		<link rel="stylesheet" href="../../static/css/weadmin.css">
+		<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 		<!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -48,6 +49,7 @@
 			<div class="weadmin-block">
 				<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
 				<button class="layui-btn" onclick="WeAdminShow('添加用户','./classadd.html',600,400)"><i class="layui-icon"></i>添加</button>
+				<a class="layui-btn" href="http://localhost:8080/unnamed/">下载表格</a>
 <!--				<span class="fr" style="line-height:40px">共有数据：88 条</span>-->
 			</div>
 			<table class="layui-table" id="memberList">
@@ -64,7 +66,43 @@
 						<th>操作</th>
 					</tr>
 				</thead>
+
 				<tbody>
+					<!-- <tr>
+						<th>11</th>
+						<th>22</th>
+						<th>33</th>
+						<th>44</th>
+						<th>55</th>
+						<th>66</th>
+						<th>77</th>
+					</tr> -->
+					<script>
+						$(function () {
+							$.ajax({
+								//请求方式  
+								type: "POST",
+								//文件位置  
+								url: "http://localhost:8080/unnamed/QueryStaServlet",
+								//返回数据格式为json,也可以是其他格式如  
+								dataType: "json",
+								//请求成功后要执行的函数，拼接html  
+								success: function (data) {
+									console.log(data);
+									var str;
+									$.each(data, function (i, n) {
+										str += "<tr>";
+										str += "<td></td>";
+										str += "<td>" + n.Id + "</td>";
+										str += "<td>" + n.JobId + "</td>";
+										str += "<td>" + n.Pname + "</td>";
+										str += "</tr>";
+									});
+									$("#memberList").append(str);
+								}
+							});
+						});
+					</script>
 <!--					<tr data-id="1">-->
 <!--						<td>-->
 <!--							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id="1"><i class="layui-icon">&#xe605;</i></div>-->
