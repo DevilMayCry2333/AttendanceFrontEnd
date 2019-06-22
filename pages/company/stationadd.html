@@ -21,7 +21,7 @@
 			<form class="layui-form">
 				<div class="layui-form-item">
 					<label for="L_username" class="layui-form-label">
-		                <span class="we-red">*</span>登录名
+		                <span class="we-red">*</span>岗位编码
 		            </label>
 					<div class="layui-input-inline">
 						<input type="text" id="L_username" name="username" lay-verify="required|nikename" autocomplete="off" class="layui-input">
@@ -30,18 +30,18 @@
 						请设置至少5个字符，将会成为您唯一的登录名
 					</div>
 				</div>
-				<div class="layui-form-item">
+				<!-- <div class="layui-form-item">
 				    <label for="L_sex" class="layui-form-label">性别</label>
 				    <div class="layui-input-block" id="L_sex">
 				      <input type="radio" name="sex" value="男" title="男" checked>
 				      <input type="radio" name="sex" value="女" title="女">
 				      <input type="radio" name="sex" value="未知" title="未知">
 				    </div>
-				</div>
+				</div> -->
 
 				<div class="layui-form-item">
 					<label for="L_email" class="layui-form-label">
-		                <span class="we-red">*</span>手机
+		                <span class="we-red">*</span>岗位名称
 		            </label>
 					<div class="layui-input-inline">
 						<input type="text" id="L_phone" name="phone" lay-verify="required|phone" autocomplete="" class="layui-input">
@@ -49,13 +49,52 @@
 				</div>
 				<div class="layui-form-item">
 					<label for="L_email" class="layui-form-label">
-		                <span class="we-red">*</span>邮箱
+		                <span class="we-red">*</span>所在部门
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="L_email" name="email" autocomplete="off" class="layui-input">
+						<!-- <input type="text" id="L_email" name="email" autocomplete="off" class="layui-unselect"> -->
+						<select name="city" lay-verify="">
+							<option value="">请选择一个部门</option>
+							<option value="0">销售</option>
+							<option value="1">管理</option>
+							<option value="2">技术</option>
+						</select>
 					</div>
 
 				</div>
+
+				<div class="layui-form-item">
+					<label for="L_email" class="layui-form-label">
+						<span class="we-red">*</span>直接上级
+					</label>
+					<div class="layui-input-inline">
+						<!-- <input type="text" id="L_email" name="email" autocomplete="off" class="layui-unselect"> -->
+						<select name="city" lay-verify="">
+							<option value="">请选择一个上级</option>
+							<option value="0">三无软件技术总监</option>
+							<option value="1">三无软件CEO</option>
+							<option value="2">三无软件董事</option>
+						</select>
+					</div>
+
+				</div>
+
+				<div class="layui-form-item">
+					<label for="L_email" class="layui-form-label">
+						<span class="we-red">*</span>岗位类别
+					</label>
+					<div class="layui-input-inline">
+						<!-- <input type="text" id="L_email" name="email" autocomplete="off" class="layui-unselect"> -->
+						<select name="city" lay-verify="">
+							<option value="">请选择一个类别</option>
+							<option value="0">技术类</option>
+							<option value="1">管理类</option>
+							<option value="2">我就是董事长</option>
+						</select>
+					</div>
+
+				</div>
+
 				<div class="layui-form-item">
 					<label for="L_pass" class="layui-form-label">
                   <span class="we-red">*</span>密码
@@ -67,14 +106,14 @@
 						6到16个字符
 					</div>
 				</div>
-				<div class="layui-form-item">
+				<!-- <div class="layui-form-item">
 					<label for="L_repass" class="layui-form-label">
                   <span class="we-red">*</span>确认密码
               </label>
 					<div class="layui-input-inline">
 						<input type="password" id="L_repass" name="repass" lay-verify="required|repass" autocomplete="off" class="layui-input">
 					</div>
-				</div>
+				</div> -->
 				<div class="layui-form-item">
 					<label for="L_repass" class="layui-form-label">
               </label>

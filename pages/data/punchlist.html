@@ -49,7 +49,7 @@
 	<div class="weadmin-block">
 		<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
 		<button class="layui-btn" onclick="WeAdminShow('添加用户','./punchadd.html',600,400)"><i class="layui-icon"></i>添加</button>
-		<a class="layui-btn" href="http://localhost:9080/AttendanceBackEnd_war_exploded/">下载表格</a>
+		<a class="layui-btn" href="http://localhost:8080/unnamed/">下载表格</a>
 		<!-- <span class="fr" style="line-height:40px">共有数据：88 条</span> -->
 	</div>
 	<table class="layui-table" id="memberList">
@@ -74,7 +74,7 @@
 								//请求方式  
 								type: "POST",
 								//文件位置  
-								url: "http://localhost:9080/AttendanceBackEnd_war_exploded/PunchCardServlet",
+								url: "http://localhost:8080/unnamed/PunchCardServlet",
 								//返回数据格式为json,也可以是其他格式如  
 								dataType: "json",
 								//请求成功后要执行的函数，拼接html  

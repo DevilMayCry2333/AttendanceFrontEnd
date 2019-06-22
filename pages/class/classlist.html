@@ -24,7 +24,7 @@
 				$.ajax({
 					type: "POST",
 					//文件位置
-					url: "http://localhost:8080/unnamed/DeleteDeServlet",
+					url: "http://localhost:8080/unnamed/ClassDeleteServlet",
 					//返回数据格式为json,也可以是其他格式如
 					dataType: "json",
 					traditional: true,
@@ -114,7 +114,7 @@
 								//请求方式  
 								type: "POST",
 								//文件位置  
-								url: "http://localhost:8080/AttendanceBackEnd_Web3_exploded/ClassesServlet",
+								url: "http://localhost:8080/unnamed/ClassesServlet",
 								//返回数据格式为json,也可以是其他格式如  
 								dataType: "json",
 								//请求成功后要执行的函数，拼接html  
@@ -123,7 +123,7 @@
 									var str;
 									$.each(data, function (i, n) {
 										str += "<tr>";
-										str += "<td><input type='checkbox' class='vehicle' name='vehicle" + i +"' value=true /></td>";
+										str += "<td><input type='checkbox' class='vehicle' name='" + i +"' value=true /></td>";
 										str += "<td>" + n.Id + "</td>";
 										str += "<td>" + n.ClassId + "</td>";
 										str += "<td>" + n.Cname + "</td>";

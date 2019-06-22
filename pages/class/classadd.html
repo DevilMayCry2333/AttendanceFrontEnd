@@ -9,11 +9,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<link rel="stylesheet" href="../../static/css/font.css">
 		<link rel="stylesheet" href="../../static/css/weadmin.css">
+		<link rel="stylesheet" href="../../static/layDate/laydate/theme/default/laydate.css" media="all">
 		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 		<!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
 	      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-	    <![endif]-->
+		<![endif]-->
+		<script src="../../static/layDate/laydate/laydate.js"></script>
 	</head>
 
 	<body>
@@ -21,42 +23,70 @@
 			<form class="layui-form">
 				<div class="layui-form-item">
 					<label for="L_username" class="layui-form-label">
-		                <span class="we-red">*</span>登录名
+		                <span class="we-red">*</span>班次编码
 		            </label>
 					<div class="layui-input-inline">
 						<input type="text" id="L_username" name="username" lay-verify="required|nikename" autocomplete="off" class="layui-input">
 					</div>
 					<div class="layui-form-mid layui-word-aux">
-						请设置至少5个字符，将会成为您唯一的登录名
+						必须唯一
 					</div>
 				</div>
 				<div class="layui-form-item">
-				    <label for="L_sex" class="layui-form-label">性别</label>
-				    <div class="layui-input-block" id="L_sex">
-				      <input type="radio" name="sex" value="男" title="男" checked>
-				      <input type="radio" name="sex" value="女" title="女">
-				      <input type="radio" name="sex" value="未知" title="未知">
+					<label for="L_username" class="layui-form-label">
+						<span class="we-red">*</span>班次名称
+					</label>
+					<div class="layui-input-inline">
+						<input type="text" id="L_username" name="username" lay-verify="required|nikename" autocomplete="off"
+							class="layui-input">
+					</div>
 				    </div>
 				</div>
 
 				<div class="layui-form-item">
 					<label for="L_email" class="layui-form-label">
-		                <span class="we-red">*</span>手机
+		                <span class="we-red">*</span>上班时间
 		            </label>
-					<div class="layui-input-inline">
-						<input type="text" id="L_phone" name="phone" lay-verify="required|phone" autocomplete="" class="layui-input">
+					<div class="layui-inline">
+						<input type="text" id="EarlyTimeSelect" class="layui-input">
+						<!-- <input type="text" id="L_phone" name="phone" lay-verify="required|phone" autocomplete="" class="layui-input"> -->
 					</div>
-				</div>
-				<div class="layui-form-item">
-					<label for="L_email" class="layui-form-label">
-		                <span class="we-red">*</span>邮箱
-		            </label>
-					<div class="layui-input-inline">
-						<input type="text" id="L_email" name="email" autocomplete="off" class="layui-input">
-					</div>
+						<script>
+							//执行一个laydate实例
+							laydate.render({
+								elem: '#EarlyTimeSelect',
+								type: 'time' //指定元素
+							});
+						</script>
 
 				</div>
+
+
 				<div class="layui-form-item">
+					<label for="L_email" class="layui-form-label">
+						<span class="we-red">*</span>下班时间
+					</label>
+					<div class="layui-inline">
+						<input type="text" id="LateTimeSelect" class="layui-input">
+						<!-- <input type="text" id="L_phone" name="phone" lay-verify="required|phone" autocomplete="" class="layui-input"> -->
+					</div>
+					<script>
+						//执行一个laydate实例
+						laydate.render({
+							elem: '#LateTimeSelect',
+							type: 'time' //指定元素
+						});
+					</script>
+				
+				</div>
+
+				<div class="layui-form-item layui-form-text">
+					<label class="layui-form-label">备注</label>
+					<div class="layui-input-block">
+						<textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+					</div>
+				</div>
+				<!-- <div class="layui-form-item">
 					<label for="L_pass" class="layui-form-label">
                   <span class="we-red">*</span>密码
               </label>
@@ -66,15 +96,15 @@
 					<div class="layui-form-mid layui-word-aux">
 						6到16个字符
 					</div>
-				</div>
-				<div class="layui-form-item">
+				</div> -->
+				<!-- <div class="layui-form-item">
 					<label for="L_repass" class="layui-form-label">
                   <span class="we-red">*</span>确认密码
               </label>
 					<div class="layui-input-inline">
 						<input type="password" id="L_repass" name="repass" lay-verify="required|repass" autocomplete="off" class="layui-input">
 					</div>
-				</div>
+				</div> -->
 				<div class="layui-form-item">
 					<label for="L_repass" class="layui-form-label">
               </label>
