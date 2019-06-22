@@ -1,1 +1,1 @@
-var globalUrl = "http://localhost:9080/AttendanceBackEnd_war_exploded/";
+var globalUrl = "http://localhost:8080/unnamed/";
