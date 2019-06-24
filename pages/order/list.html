@@ -10,6 +10,9 @@
 		<link rel="stylesheet" href="../../static/css/font.css">
 		<link rel="stylesheet" href="../../static/css/weadmin.css">
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+		<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+		<script src="../../url.js"></script>
+
 		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 		<!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -28,7 +31,7 @@
 				<i class="layui-icon" style="line-height:30px">ဂ</i></a>
 		</div>
 		<div class="weadmin-body">
-			<div class="layui-row">
+			<!-- <div class="layui-row">
 				<form class="layui-form layui-col-md12 we-search">
 					<div class="layui-inline">
 						<input class="layui-input" placeholder="开始日" name="start" id="start">
@@ -67,55 +70,58 @@
 					</div>
 					<button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
 				</form>
-			</div>
+			</div> -->
 			<div class="weadmin-block">
 				<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
 				<button class="layui-btn" onclick="WeAdminShow('添加订单','./add.html')"><i class="layui-icon"></i>添加</button>
-				<span class="fr" style="line-height:40px">共有数据：88 条</span>
+				<!-- <span class="fr" style="line-height:40px">共有数据：88 条</span> -->
 			</div>
-			<table class="layui-table">
+			<table class="layui-table" id="memberList">
 				<thead>
 					<tr>
 						<th>
 							<div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
 						</th>
-						<th>订单编号</th>
-						<th>收货人</th>
-						<th>总金额</th>
-						<th>应付金额</th>
-						<th>订单状态</th>
-						<th>支付状态</th>
-						<th>发货状态</th>
-						<th>支付方式</th>
-						<th>配送方式</th>
-						<th>下单时间</th>
-						<th>操作</th>
+						<th>ID</th>
+						<th>班次</th>
+						<th>员工姓名</th>
+						<th>早上上班时间</th>
+						<th>下午上班时间</th>
+						<th>出勤情况</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-						</td>
-						<td>2017009171822298053</td>
-						<td>老王:18925139194</td>
-						<td>7829.10</td>
-						<td>7854.10</td>
-						<td>待确认</td>
-						<td>未支付</td>
-						<td>未发货</td>
-						<td>其他方式</td>
-						<td>申通物流</td>
-						<td>2017-08-17 18:22</td>
-						<td class="td-manage">
-							<a title="查看" onclick="WeAdminShow('编辑','order-view.html')" href="javascript:;">
-								<i class="layui-icon">&#xe63c;</i>
-							</a>
-							<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-								<i class="layui-icon">&#xe640;</i>
-							</a>
-						</td>
-					</tr>
+				 <script>
+				 	$(function () {
+				 		$.ajax({
+				 			//请求方式  
+				 			type: "POST",
+				 			//文件位置  
+				 			url: globalUrl + "AttendServlet",
+				 			//返回数据格式为json,也可以是其他格式如  
+				 			dataType: "json",
+				 			//请求成功后要执行的函数，拼接html  
+				 			success: function (data) {
+				 				console.log("sssss",data);
+				 				var str;
+				 				$.each(data, function (i, n) {
+				 					str += "<tr>";
+				 					str += "<td></td>";
+									 // str += "<td>" + (i + 1) + "</td>";
+									 str += "<td>" + n.Id + "</td>";
+									 str += "<td>" + n.ClassId + "</td>";
+									 str += "<td>" + n.EmpName + "</td>";
+				 					str += "<td>" + n.EarlyTime + "</td>";
+				 					str += "<td>" + n.LateTime + "</td>";
+				 					str += "<td>" + n.AttendStatus + "</td>";
+				 					str += "</tr>";
+				 				});
+				 				$("#memberList").append(str);
+				 			}
+				 		});
+				 	});
+				 </script>
+
 				</tbody>
 			</table>
 			<div class="page">
@@ -130,7 +136,7 @@
 			</div>
 
 		</div>
-		<script>
+		<!-- <script>
 			layui.extend({
 				admin: '{/}../../static/js/admin'
 			});
@@ -198,7 +204,7 @@
 				}
 			});
 			
-		</script>
+		</script> -->
 	</body>
 
 </html>
