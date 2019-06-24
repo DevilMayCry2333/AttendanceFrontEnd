@@ -16,6 +16,45 @@
 	      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<script src="../../static/layDate/laydate/laydate.js"></script>
+		<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+
+		<script type="text/javascript">
+			function add() {
+            console.log("123")
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/unnamed/AddClassServlet" ,//url
+                // contentType:"application/json",
+                // data:JSON.stringify($('form').serializeObject()),
+                data:{
+                  Ccode :$("#Ccode").val(),
+                  Cname : $("#Cname").val(),
+                  EarlyTimeSelect : $("#EarlyTimeSelect").val(),
+                  LateTimeSelect : $("#LateTimeSelect").val(),
+                  desc : $("#desc").val()
+                },
+                success:function(data) {
+                	alert("添加成功");
+                }
+                // success: function res(result) {
+                //     console.log(result);//打印服务端返回的数据(调试用)
+                //         alert("SUCCESS");
+                // }
+                // error : function() {
+                    // alert("异常！");
+                // }
+            });
+        }
+
+
+
+		</script>
+
+
+
+
 	</head>
 
 	<body>
@@ -23,10 +62,10 @@
 			<form class="layui-form">
 				<div class="layui-form-item">
 					<label for="L_username" class="layui-form-label">
-		                <span class="we-red">*</span>班次编码
+		                <span class="we-red" id="">*</span>班次编码
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="L_username" name="username" lay-verify="required|nikename" autocomplete="off" class="layui-input">
+						<input type="text" id="Ccode" name="username" lay-verify="required|nikename" autocomplete="off" class="layui-input">
 					</div>
 					<div class="layui-form-mid layui-word-aux">
 						必须唯一
@@ -37,7 +76,7 @@
 						<span class="we-red">*</span>班次名称
 					</label>
 					<div class="layui-input-inline">
-						<input type="text" id="L_username" name="username" lay-verify="required|nikename" autocomplete="off"
+						<input type="text" id="Cname" name="username" lay-verify="required|nikename" autocomplete="off"
 							class="layui-input">
 					</div>
 				    </div>
@@ -108,11 +147,11 @@
 				<div class="layui-form-item">
 					<label for="L_repass" class="layui-form-label">
               </label>
-					<button class="layui-btn" lay-filter="add" lay-submit="">确定</button>
+					<button class="layui-btn" lay-filter="add" lay-submit="" onclick="add()">确定</button>
 				</div>
 			</form>
 		</div>
-		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+<!-- 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
 		
 		<script>
 			layui.extend({
@@ -148,8 +187,8 @@
 						$('input[name="email"]').removeAttr('lay-verify');
 					}
 				});
-
-				//监听提交
+</script> -->
+<!-- <script>			//监听提交
 				form.on('submit(add)', function(data) {
 					//console.log(data.field);
 					var f = data.field;
@@ -197,7 +236,7 @@
 				});
 
 			});
-		</script>
+		</script> -->
 	</body>
 
 </html>
