@@ -100,6 +100,10 @@
 										str += "<td>" + n.Adepartment + "</td>";
 										str += "<td>" + n.Isuperior + "</td>";
 										str += "<td>" + n.Jcategory + "</td>";
+
+										str += "<td><a title=' 修改'' href='./stationupdate.html?id=" + n.Id +"'><i class='layui-icon'>&#xe63c;</i></a></td>";
+
+
 										str += "</tr>";
 									});
 									$("#memberList").append(str);

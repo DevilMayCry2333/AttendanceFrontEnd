@@ -90,6 +90,10 @@
                                         str += "<td>" + n.Dprincipal+ "</td>";
                                         str += "<td>" + n.Dability+ "</td>";
                                         str += "<td>" + n.Sdepartment+ "</td>";
+
+										str += "<td><a title=' 修改'' href='./departmentupdate.html?id=" + n.Id +"'><i class='layui-icon'>&#xe63c;</i></a></td>";
+
+
                                         str += "</tr>";
                                     });
                                     $("#memberList").append(str);
