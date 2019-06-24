@@ -12,41 +12,49 @@
 		<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 
 		<script src="../../url.js"></script>
+		<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 		<!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
 	      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
-		<script>
-				function EmpolyPost() {
-					console.log($("#L_userIDCode").val());
-					// console.log($(".layui-input"));
 
-					$.ajax({
-						//请求方式
-						type: "POST",
-						//文件位置
-						url: globalUrl + "EmployeeInsertServlet",
-						//返回数据格式为json,也可以是其他格式如
-						dataType: "json",
-						data:{
-							userCode: $("#L_userIDCode").val(),
-							userName: $("#L_userName").val(),
-							Nation: $("#L_Nation").val(),
-							IdCard: $("#L_IdCard").val(),
-							Salary: $("#L_Salary").val(),
-							tel: $("#L_tel").val(),
-							EmergyContact: $("#L_EmergyContact").val(),
-							Station: $("#L_Station").val(),
-							Desc: $("#L_Desc").val()
-						},
-						//请求成功后要执行的函数，拼接html
-						success: function (data) {
-							console.log($("#L_userIDCode"));
-							console.log(data);
-						}
-					});
-				};
+		<script type="text/javascript">
+			function add() {
+            console.log("123")
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/unnamed/EmployeeAddServlet" ,//url
+                // contentType:"application/json",
+                // data:JSON.stringify($('form').serializeObject()),
+                data:{
+                  a :$("#L_username").val(),
+                  b : $("#b").val(),
+                  c : $("#c").val(),
+                  d : $("#d").val(),
+                  e : $("#e").val(),
+                  f : $("#f").val(),
+                  g : $("#g").val(),
+                  h : $("#h").val(),
+                  i : $("#i").val(),
+                  j : $("#j").val(),
+                  k : $("#k").val(),
+                },
+                success:function(data) {
+                	alert("添加成功");
+                }
+                // success: function res(result) {
+                //     console.log(result);//打印服务端返回的数据(调试用)
+                //         alert("SUCCESS");
+                // }
+                // error : function() {
+                    // alert("异常！");
+                // }
+            });
+        }
+
 		</script>
 	</head>
 
@@ -87,7 +95,9 @@
 								<span class="we-red">*</span>姓名
 							</label>
 							<div class="layui-input-inline">
-								<input type="text" id="L_userName" name="userName" lay-verify="required|phone" autocomplete=""
+
+								<input type="text" id="b" name="phone" lay-verify="required|phone" autocomplete=""
+
 									class="layui-input">
 							</div>
 						</div>
@@ -97,7 +107,9 @@
 								<span class="we-red">*</span>年龄
 							</label>
 							<div class="layui-input-inline">
-								<input type="text" id="L_age" name="age" autocomplete="off" class="layui-input">
+
+								<input type="text" id="c" name="email" autocomplete="off" class="layui-input">
+
 							</div>
 
 						</div>
@@ -106,7 +118,8 @@
 								<span class="we-red">*</span>民族
 							</label>
 							<div class="layui-input-inline">
-								<input type="text" id="L_Nation" name="Nation" lay-verify="required|pass" autocomplete="off"
+
+								<input type="password" id="d" name="pass" lay-verify="required|pass" autocomplete="off"
 									class="layui-input">
 							</div>
 							<!-- <div class="layui-form-mid layui-word-aux">
@@ -118,7 +131,9 @@
 								<span class="we-red">*</span>身份证
 							</label>
 							<div class="layui-input-inline">
-								<input type="text" id="L_IdCard" name="IdCard" lay-verify="required|repass" autocomplete="off"
+
+								<input type="password" id="e" name="repass" lay-verify="required|repass" autocomplete="off"
+
 									class="layui-input">
 							</div>
 						</div>
@@ -128,7 +143,9 @@
 								<span class="we-red">*</span>薪水
 							</label>
 							<div class="layui-input-inline">
-								<input type="password" id="L_Salary" name="Salary" lay-verify="required|repass" autocomplete="off"
+
+								<input type="password" id="f" name="repass" lay-verify="required|repass" autocomplete="off"
+
 									class="layui-input">
 							</div>
 						</div>
@@ -138,7 +155,9 @@
 								<span class="we-red">*</span>联系电话
 							</label>
 							<div class="layui-input-inline">
-								<input type="text" id="L_tel" name="tel" lay-verify="required|repass" autocomplete="off"
+
+								<input type="password" id="g" name="repass" lay-verify="required|repass" autocomplete="off"
+
 									class="layui-input">
 							</div>
 						</div>
@@ -148,7 +167,9 @@
 								<span class="we-red">*</span>紧急联系人
 							</label>
 							<div class="layui-input-inline">
-								<input type="text" id="L_EmergyContact" name="EmergyContact" lay-verify="required|repass" autocomplete="off"
+
+								<input type="password" id="h" name="repass" lay-verify="required|repass" autocomplete="off"
+
 									class="layui-input">
 							</div>
 						</div>
@@ -158,7 +179,9 @@
 								<span class="we-red">*</span>岗位
 							</label>
 							<div class="layui-input-inline">
-								<input type="text" id="L_Station" name="Station" lay-verify="required|repass" autocomplete="off"
+
+								<input type="password" id="i" name="repass" lay-verify="required|repass" autocomplete="off"
+
 									class="layui-input">
 							</div>
 						</div>
@@ -168,15 +191,32 @@
 								<span class="we-red">*</span>个人描述
 							</label>
 							<div class="layui-input-inline">
-								<input type="text" id="L_Desc" name="Desc" lay-verify="required|repass" autocomplete="off"
+
+								<input type="password" id="j" name="repass" lay-verify="required|repass" autocomplete="off"
+
 									class="layui-input">
 							</div>
 						</div>
 
+
+						<div class="layui-form-item">
+							<label for="L_repass" class="layui-form-label">
+								<span class="we-red">*</span>性别
+							</label>
+							<div class="layui-input-inline">
+								<input type="password" id="k" name="repass" lay-verify="required|repass" autocomplete="off"
+									class="layui-input">
+							</div>
+						</div>
+
+
+
+
 						<div class="layui-form-item">
 							<label for="L_repass" class="layui-form-label">
 							</label>
-							<button class="layui-btn" lay-filter="add" onclick="EmpolyPost()">确定</button>
+							<button class="layui-btn" lay-filter="add" lay-submit="Post" onclick="add()">确定</button>
+
 						</div>
 					</form>
 				</div>
