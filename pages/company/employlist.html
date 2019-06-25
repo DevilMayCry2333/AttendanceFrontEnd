@@ -93,7 +93,9 @@
                                         str += "<td>" + n.Nation+ "</td>";
                                         str += "<td>" + n.Job+ "</td>";
 
-										str += "<td><a title=' 修改'' href='./employupdate.html?id=" + n.Id +"'><i class='layui-icon'>&#xe63c;</i></a></td>";
+										// str += "<td><a title=' 修改'' href='./employupdate.html?id=" + n.Id +"'><i class='layui-icon'>&#xe63c;</i></a></td>";
+
+										str +="<td style='cursor:pointer'><a title=' 修改'' onclick=WeAdminShow('修改','./employupdate.html?id=" + n.Id +"',600,400)><i class='layui-icon'>&#xe63c;</i></a><a class=‘layui-btn’ onclick=WeAdminShow('删除','./employdelete.html?id=" + n.Id +"',130,130)><i class='layui-icon'>&#xe640;</i></a></td>"
 
                                         str += "</tr>";
                                     });

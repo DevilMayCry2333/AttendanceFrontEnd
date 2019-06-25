@@ -91,7 +91,15 @@
                                         str += "<td>" + n.Dability+ "</td>";
                                         str += "<td>" + n.Sdepartment+ "</td>";
 
-										str += "<td><a title=' 修改'' href='./departmentupdate.html?id=" + n.Id +"'><i class='layui-icon'>&#xe63c;</i></a></td>";
+										// str += "<td><a title=' 修改'' href='./departmentupdate.html?id=" + n.Id +"'><i class='layui-icon'>&#xe63c;</i></a><a title=' 修改'' href='./departmentdelete.html?id=" + n.Id +"'><i class='layui-icon'>&#xe640;</i></a></td>";
+
+										// str +="<td><a style='cursor:pointer' class=‘layui-btn’ onclick=WeAdminEdit('删除','./departmentdelete.html',id=" +n.Id +",130,130)>删除</a></td>"
+
+										str +="<td style='cursor:pointer'><a title=' 修改'' onclick=WeAdminShow('修改','./departmentupdate.html?id=" + n.Id +"',600,400)><i class='layui-icon'>&#xe63c;</i></a><a class=‘layui-btn’ onclick=WeAdminShow('删除','./departmentdelete.html?id=" + n.Id +"',130,130)><i class='layui-icon'>&#xe640;</i></a></td>"
+
+
+
+
 
 
                                         str += "</tr>";

@@ -101,7 +101,8 @@
 										str += "<td>" + n.Isuperior + "</td>";
 										str += "<td>" + n.Jcategory + "</td>";
 
-										str += "<td><a title=' 修改'' href='./stationupdate.html?id=" + n.Id +"'><i class='layui-icon'>&#xe63c;</i></a></td>";
+										// str += "<td><a title=' 修改'' href='./stationupdate.html?id=" + n.Id +"'><i class='layui-icon'>&#xe63c;</i></a></td>";
+										str +="<td style='cursor:pointer'><a title=' 修改'' onclick=WeAdminShow('修改','./stationupdate.html?id=" + n.Id +"',600,400)><i class='layui-icon'>&#xe63c;</i></a><a class=‘layui-btn’ onclick=WeAdminShow('删除','./stationdelete.html?id=" + n.Id +"',130,130)><i class='layui-icon'>&#xe640;</i></a></td>"
 
 
 										str += "</tr>";
