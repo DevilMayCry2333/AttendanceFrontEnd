@@ -83,8 +83,8 @@
                                     // console.log("sssss",data);
                                     var str;
                                     $.each(data, function (i, n) {
-                                        str += "<tr>";
-                                        str += "<td></td>";
+										str += "<tr>";
+										str += "<td><input type='checkbox' class='vehicle' name='" + parseInt(n.Id) +"' value=true /></td>";
                                         str += "<td>" + n.Id + "</td>";
                                         str += "<td>" + n.EmployId + "</td>";
                                         str += "<td>" + n.UserName + "</td>";

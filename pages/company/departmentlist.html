@@ -83,7 +83,7 @@
                                     var str;
                                     $.each(data, function (i, n) {
                                         str += "<tr>";
-                                        str += "<td></td>";
+										str += "<td><input type='checkbox' class='vehicle' name='" + parseInt(n.Id) +"' value=true /></td>";
                                         str += "<td>" + n.Id + "</td>";
                                         str += "<td>" + n.DepartmentId + "</td>";
                                         str += "<td>" + n.Dname + "</td>";
