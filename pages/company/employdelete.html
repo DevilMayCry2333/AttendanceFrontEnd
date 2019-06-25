@@ -17,19 +17,44 @@
 	    <![endif]-->
 <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 		<script type="text/javascript">
-			
-            console.log($("#demo").val())
+		  function getParams(name, href) {
+			 var href = href || window.location.href,
+			 value = '';
+			 if (name) {
+			 var reg = new RegExp(name + '=([^&]*)', 'g');
+			 href.replace(reg, function($0, $1) {
+			 value = decodeURI($1);
+			 });
+			 } else {
+			 value = {};
+			 var reg = /\b(\w+)=([^\/&]*)/g;
+			 href.replace(reg, function($0, $1, $2) {
+			 value[$1] = decodeURI($2);
+			 });
+			 }
+			 return value;
+		  };
+			var idB = getParams("id");
+			console.log(idB);
+            // console.log($("#demo").val())
 			function add() {
             $.ajax({
                 //几个参数需要注意一下
                 type: "POST",//方法类型
                 dataType: "json",//预期服务器返回的数据类型
-                url: "http://localhost:8080/unnamed/EmployDelServlet" ,//url
+                url: globalUrl + "EmployDelServlet" ,//url
                 data:{
-                 id :$("#demo").val(),
+                 id :idB,
                 },
                 success:function(data) {
-                	alert("修改成功");
+					console.log(data);
+				if(data.Res.match("true")){
+					alert("删除成功");
+					window.location.href = "http://localhost/AttendanceFrontEnd/pages/company/employlist.html";
+				}else{
+					alert("删除失败");
+					}
+
                 }
             });
         }
@@ -39,35 +64,18 @@
 
 	<body>
 		<div class="weadmin-body">
-			<form class="layui-form">
+			<!-- <form class="layui-form"> -->
 
 				<h1 id="demo"></h1>
 
 
 
-					<button class="layui-btn" lay-filter="add" lay-submit="" onclick="add()">确定</button>
+					<button class="layui-btn" onclick="add()"> 确定</button>
 
-			</form>
+			<!-- </form> -->
 		</div>
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
-				<script type="text/javascript">
-			 function  getParams(name, href) {
-			 	var href = href || window.location.href,
-			 	value = '';
-			 	if (name) {
-			 		var reg = new RegExp(name + '=([^&]*)', 'g');
-			 		href.replace(reg, function($0, $1) {
-			 			value = decodeURI($1);
-			 		});
-			 	} else {
-			 		value = {};
-			 		var reg = /\b(\w+)=([^\/&]*)/g;
-			 		href.replace(reg, function($0, $1, $2) {
-			 			value[$1] = decodeURI($2);
-			 		});
-			 	}
-			 	return value;
-			 };
+		<script type="text/javascript">
 			 var idB =  getParams("id");
 			 document.getElementById("demo").value = idB;
 		</script>

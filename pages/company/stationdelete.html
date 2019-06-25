@@ -18,18 +18,30 @@
 <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 		<script type="text/javascript">
 			
-            console.log($("#demo").val())
+            // console.log($("#demo").val())
 			function add() {
+			var idB = getParams("id");
+			console.log(idB);
+
             $.ajax({
                 //几个参数需要注意一下
                 type: "POST",//方法类型
                 dataType: "json",//预期服务器返回的数据类型
-                url: "http://localhost:8080/unnamed/StationDelServlet" ,//url
+                url: globalUrl + "StationDelServlet" ,//url
                 data:{
-                 id :$("#demo").val(),
+                 id :idB,
                 },
                 success:function(data) {
-                	alert("修改成功");
+					console.log(data);
+					
+					if(data.Res.match("true")){
+						alert("删除成功");
+						window.location.href = document.referrer;
+						window.history.back(-1);
+					}else{
+						alert("删除失败");
+					}
+				
                 }
             });
         }
@@ -39,15 +51,15 @@
 
 	<body>
 		<div class="weadmin-body">
-			<form class="layui-form">
+			<!-- <form class="layui-form"> -->
 
 				<h1 id="demo"></h1>
 
 
 
-					<button class="layui-btn" lay-filter="add" lay-submit="" onclick="add()">确定</button>
+					<button class="layui-btn" lay-filter="add" onclick="add()">确定</button>
 
-			</form>
+			<!-- </form> -->
 		</div>
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
 				<script type="text/javascript">

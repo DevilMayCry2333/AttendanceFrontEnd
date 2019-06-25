@@ -18,19 +18,26 @@
 <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 		<script type="text/javascript">
 			
-            console.log($("#demo").val())
+            // console.log($("#demo").val());
 			function add() {
+			 var idB = getParams("id");
+			 console.log(idB);
+
             $.ajax({
                 //几个参数需要注意一下
                 type: "POST",//方法类型
-                dataType: "text",//预期服务器返回的数据类型
+                dataType: "json",//预期服务器返回的数据类型
                 url: "http://localhost:8080/unnamed/DepartmentDelServlet" ,//url
                 data:{
-                 id :$("#demo").val(),
+                 id :idB,
                 },
                 success:function(result) {
-                	if (result==1) {
-                	alert("删除成功");
+					console.log(result);
+                	if (result.Res.match("true")) {
+						alert("删除成功");
+						window.location.href = "http://localhost/AttendanceFrontEnd/pages/company/departmentlist";
+						
+						// window.location.href = "http://localhost/AttendanceFrontEnd/pages/company/departmentlist.html";
                 	}
                 }
             });
@@ -41,15 +48,15 @@
 
 	<body>
 		<div class="weadmin-body">
-			<form class="layui-form">
+			<!-- <form class="layui-form"> -->
 
 				<h1 id="demo"></h1>
 
 
 
-					<button class="layui-btn" lay-filter="add" lay-submit="" onclick="add()">确定</button>
+					<button class="layui-btn" lay-filter="add" onclick="add()">确定</button>
 
-			</form>
+			<!-- </form> -->
 		</div>
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
 				<script type="text/javascript">
@@ -71,6 +78,7 @@
 			 	return value;
 			 };
 			 var idB =  getParams("id");
+			 console.log(idB);
 			 document.getElementById("demo").value = idB;
 		</script>
 	</body>

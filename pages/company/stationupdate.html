@@ -14,15 +14,16 @@
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
 	      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
 	    <![endif]-->
-	    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-	    		<script type="text/javascript">
+		<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+		<script src="../../url.js"></script>
+	    <script type="text/javascript">
 			function add() {
             console.log("123")
             $.ajax({
                 //几个参数需要注意一下
                 type: "POST",//方法类型
                 dataType: "json",//预期服务器返回的数据类型
-                url: "http://localhost:8080/unnamed/StationUpdateServlet" ,//url
+                url: globalUrl + "StationUpdateServlet" ,//url
                 // contentType:"application/json",
                 // data:JSON.stringify($('form').serializeObject()),
                 data:{
@@ -34,7 +35,15 @@
                   e : $("#e").val(),
                 },
                 success:function(data) {
-                	alert("添加成功");
+					console.log(data);
+					if(data.Res.match("true")){
+						alert("修改成功");
+						window.location.href = document.referrer;
+						window.history.back(-1);
+					}else{
+						alert("修改失败");
+					}
+                	
                 }
                 // success: function res(result) {
                 //     console.log(result);//打印服务端返回的数据(调试用)
@@ -58,7 +67,7 @@
 
 	<body>
 		<div class="weadmin-body">
-			<form class="layui-form">
+			<!-- <form class="layui-form"> -->
 
 				<h1 id="demo"></h1>
 
@@ -160,9 +169,9 @@
 				<div class="layui-form-item">
 					<label for="L_repass" class="layui-form-label">
               </label>
-					<button class="layui-btn" lay-filter="add" lay-submit="" onclick="add()">确定</button>
+					<button class="layui-btn" lay-filter="add" onclick="add()">确定</button>
 				</div>
-			</form>
+			<!-- </form> -->
 		</div>
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
 		

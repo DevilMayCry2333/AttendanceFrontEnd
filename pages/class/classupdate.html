@@ -17,36 +17,45 @@
 		<![endif]-->
 		<script src="../../static/layDate/laydate/laydate.js"></script>
 		<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+		<script src="../../url.js"></script>
 		<script type="text/javascript">
 			function add() {
-            console.log("123")
+			console.log("123")
             $.ajax({
                 //几个参数需要注意一下
                 type: "POST",//方法类型
                 dataType: "json",//预期服务器返回的数据类型
-                url: "http://localhost:8080/unnamed/ClassUpdateServlet" ,//url
+                url: globalUrl + "ClassUpdateServlet" ,//url
                 // contentType:"application/json",
                 // data:JSON.stringify($('form').serializeObject()),
                 data:{
                 	// id = : "1" ;
-                	id :$("#demo").val(),
+                  id :$("#demo").val(),
                   Ccode :$("#Ccode").val(),
                   Cname : $("#Cname").val(),
                   EarlyTimeSelect : $("#EarlyTimeSelect").val(),
                   LateTimeSelect : $("#LateTimeSelect").val(),
                   desc : $("#desc").val()
                 },
-                success:function(data) {
-                	alert("修改成功");
-                }
-                // success: function res(result) {
-                //     console.log(result);//打印服务端返回的数据(调试用)
-                //         alert("SUCCESS");
-                // }
-                // error : function() {
-                    // alert("异常！");
-                // }
-            });
+                success:function aa(data) {
+					console.log(data.Res);
+					res = data.Res;
+					if(data.Res.match("true")){
+						console.log("Heelo");
+						alert("修改成功");
+						window.location.href = "http://localhost/AttendanceFrontEnd/pages/class/classlist.html";
+						
+					}
+				},
+				error: function ee(err) {
+					console.log(err);
+				},complete:function cc(cm){
+					console.log(cm);
+
+				}
+
+			});
+
         }
 
 		</script>
@@ -58,7 +67,7 @@
 
 	<body>
 		<div class="weadmin-body">
-			<form class="layui-form">
+			<!-- <form class="layui-form" onsubmit="add()"> -->
 
 				<h1 id="demo"></h1>
 
@@ -124,7 +133,7 @@
 				<div class="layui-form-item layui-form-text">
 					<label class="layui-form-label">备注</label>
 					<div class="layui-input-block">
-						<textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+						<textarea id="desc" name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
 					</div>
 				</div>
 				<!-- <div class="layui-form-item">
@@ -149,9 +158,9 @@
 				<div class="layui-form-item">
 					<label for="L_repass" class="layui-form-label">
               </label>
-					<button class="layui-btn" lay-filter="add" lay-submit="" onclick="add()">确定</button>
+					<button class="layui-btn" lay-filter="add" onclick="add()">确定</button>
 				</div>
-			</form>
+			<!-- </form> -->
 		</div>
 
 
@@ -174,6 +183,8 @@
 			 	return value;
 			 };
 			 var idB =  getParams("id");
+			 console.log(idB);
+
 			 document.getElementById("demo").value = idB;
 		</script>
 <!-- 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
