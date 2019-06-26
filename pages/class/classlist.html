@@ -108,6 +108,7 @@
 									$.each(data, function (i, n) {
 										console.log(parseInt(parseInt(i) + 1));
 										str += "<tr>";
+
 										str += "<td><input type='checkbox' class='vehicle' name='" + parseInt(n.Id) +"' value=false onclick='check(this)'/></td>";
 										str += "<td>" + n.Id + "</td>";
 										str += "<td>" + n.ClassId + "</td>";
