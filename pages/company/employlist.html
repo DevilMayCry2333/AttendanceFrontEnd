@@ -9,7 +9,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<link rel="stylesheet" href="../../static/css/font.css">
 		<link rel="stylesheet" href="../../static/css/weadmin.css">
+		<link rel="stylesheet" href="../../static/layui/css/layui.css">
 		<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+		<script src="../../static/layui/layui.all.js"></script>
 		<script src="../../url.js"></script>
 		<script>
 				var CheckList = [];
@@ -94,7 +96,7 @@
 				<button class="layui-btn" onclick="WeAdminShow('添加用户','./employadd.html',600,400)"><i class="layui-icon"></i>添加</button>
 <!--				<span class="fr" style="line-height:40px">共有数据：88 条</span>-->
 			</div>
-			<table class="layui-table" id="memberList">
+			<table class="layui-table">
 				<thead>
 					<tr>
 						<th>
@@ -110,7 +112,7 @@
 						<th>操作</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="memberList">
 				 <script>
                         $(function () {
                             $.ajax({
@@ -119,7 +121,10 @@
                                 //文件位置  
                                 url: globalUrl + "EmployeeListServlet",
                                 //返回数据格式为json,也可以是其他格式如  
-                                dataType: "json",
+								dataType: "json",
+								data:{
+									page: "1"
+								},
                                 //请求成功后要执行的函数，拼接html  
                                 success: function (data) {
                                     // console.log("sssss",data);
@@ -146,74 +151,76 @@
                             });
                         });
                     </script>
-<!--					<tr data-id="1">-->
-<!--						<td>-->
-<!--							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id="1"><i class="layui-icon">&#xe605;</i></div>-->
-<!--						</td>-->
-<!--						<td>1</td>-->
-<!--						<td>小张</td>-->
-<!--						<td>男</td>-->
-<!--						<td>17600000000</td>-->
-<!--						<td>admin@mail.com</td>-->
-<!--						<td>北京市 海淀区</td>-->
-<!--						<td>2017-01-01 11:11:42</td>-->
-<!--						<td class="td-status">-->
-<!--							<span class="layui-btn layui-btn-normal layui-btn-xs">已启用</span></td>-->
-<!--						<td class="td-manage">-->
-<!--							<a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">-->
-<!--								<i class="layui-icon">&#xe601;</i>-->
-<!--							</a>-->
-<!--							<a title="编辑" onclick="WeAdminEdit('编辑','./edit.html', 1, 600, 400)" href="javascript:;">-->
-<!--								<i class="layui-icon">&#xe642;</i>-->
-<!--							</a>-->
-<!--							<a onclick="WeAdminShow('修改密码','./password.html',600,400)" title="修改密码" href="javascript:;">-->
-<!--								<i class="layui-icon">&#xe631;</i>-->
-<!--							</a>-->
-<!--							<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">-->
-<!--								<i class="layui-icon">&#xe640;</i>-->
-<!--							</a>-->
-<!--						</td>-->
-<!--					</tr>-->
-<!--					<tr data-id="2">-->
-<!--						<td>-->
-<!--							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>-->
-<!--						</td>-->
-<!--						<td>2</td>-->
-<!--						<td>小明</td>-->
-<!--						<td>女</td>-->
-<!--						<td>13000000000</td>-->
-<!--						<td>admin@mail.com</td>-->
-<!--						<td>北京市 海淀区</td>-->
-<!--						<td>2017-01-01 11:11:42</td>-->
-<!--						<td class="td-status">-->
-<!--							<span class="layui-btn layui-btn-normal layui-btn-xs">已启用</span></td>-->
-<!--						<td class="td-manage">-->
-<!--							<a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">-->
-<!--								<i class="layui-icon">&#xe601;</i>-->
-<!--							</a>-->
-<!--							<a title="编辑" onclick="WeAdminEdit('编辑','./edit.html', 2, 600, 400)" href="javascript:;">-->
-<!--								<i class="layui-icon">&#xe642;</i>-->
-<!--							</a>-->
-<!--							<a onclick="WeAdminShow('修改密码','./password.html',600,400)" title="修改密码" href="javascript:;">-->
-<!--								<i class="layui-icon">&#xe631;</i>-->
-<!--							</a>-->
-<!--							<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">-->
-<!--								<i class="layui-icon">&#xe640;</i>-->
-<!--							</a>-->
-<!--						</td>-->
-<!--					</tr>-->
 				</tbody>
 			</table>
-<!--			<div class="page">-->
-<!--				<div>-->
-<!--					<a class="prev" href="">&lt;&lt;</a>-->
-<!--					<a class="num" href="">1</a>-->
-<!--					<span class="current">2</span>-->
-<!--					<a class="num" href="">3</a>-->
-<!--					<a class="num" href="">489</a>-->
-<!--					<a class="next" href="">&gt;&gt;</a>-->
-<!--				</div>-->
-<!--			</div>-->
+			<div id="test1"></div>
+
+			<script>
+				var mycount = 0;
+				layui.use('laypage', function () {
+					var laypage = layui.laypage;
+					//执行一个laypage实例
+					$.ajax({
+						type:'POST',
+						dataType:'json',
+						url: globalUrl + "EmpCountServlet",
+						success:function(res){
+							console.log(res);
+							mycount = res.Count;
+							laypage.render({
+								elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+								,
+								count: mycount //数据总数，从服务端得到
+						 		 ,
+							jump: function(obj, first){
+						  //obj包含了当前分页的所有参数，比如：
+						  		console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+							 	console.log(obj.limit); //得到每页显示的条数
+								$("#memberList").html("");
+						  //首次不执行
+								if(!first){
+							//do something
+                            		$.ajax({
+                                //请求方式  
+                                		type: "POST",
+                                //文件位置
+                                		url: globalUrl + "EmployeeListServlet",
+                                //返回数据格式为json,也可以是其他格式如  
+										dataType: "json",
+										data:{
+											page: obj.curr
+										},
+                                //请求成功后要执行的函数，拼接html  
+                                		success: function (data) {
+                                    // console.log("sssss",data);
+                                    		var str;
+                                    		$.each(data, function (i, n) {
+												str += "<tr>";
+												str += "<td><input type='checkbox' class='vehicle' name='" + parseInt(n.Id) +"' value=true /></td>";
+                                        		str += "<td>" + n.Id + "</td>";
+                                        		str += "<td>" + n.EmployId + "</td>";
+                                        		str += "<td>" + n.UserName + "</td>";
+                                        		str += "<td>" + n.Gender+ "</td>";
+                                        		str += "<td>" + n.Age+ "</td>";
+                                        		str += "<td>" + n.Nation+ "</td>";
+                                        		str += "<td>" + n.Job+ "</td>";
+										// str += "<td><a title=' 修改'' href='./employupdate.html?id=" + n.Id +"'><i class='layui-icon'>&#xe63c;</i></a></td>";
+												str +="<td style='cursor:pointer'><a title=' 修改'' onclick=WeAdminShow('修改','./employupdate.html?id=" + n.Id +"',600,400)><i class='layui-icon'>&#xe63c;</i></a><a class=‘layui-btn’ onclick=WeAdminShow('删除','./employdelete.html?id=" + n.Id +"',130,130)><i class='layui-icon'>&#xe640;</i></a></td>"
+                                        		str += "</tr>";
+                                    });
+                                    $("#memberList").append(str);
+                                }
+                            });
+							}
+						}
+					});
+						}
+					})
+					console.log("my",mycount);
+
+				});
+			</script>
+
 		</div>
 		<!--<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
