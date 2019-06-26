@@ -29,6 +29,12 @@
 					},
 					//请求成功后要执行的函数，拼接html
 					success:function res(data){
+						if(data.Res.match("true")){
+							alert("批量删除成功");
+							window.location.href = "http://localhost/AttendanceFrontEnd/pages/class/classlist.html";
+						}else{
+							alert("批量删除失败");
+						}
 						console.log(data);
 					}
 				})
@@ -46,14 +52,6 @@
 				console.log(e);
 				console.log(CheckList);
 			}
-
-
-			
-
-
-
-
-
 
 		</script>
 		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
