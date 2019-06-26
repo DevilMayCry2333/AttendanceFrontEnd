@@ -136,7 +136,7 @@
 									$.each(data, function (i, n) {
 										console.log(parseInt(parseInt(i) + 1));
 										str += "<tr>";
-										str += "<td><input type='checkbox' class='vehicle' name='" + parseInt(n.Id) +"' value=true /></td>";
+										str += "<td><input type='checkbox' class='vehicle' name='" + parseInt(n.Id) +"' value='"+parseInt(n.Id)+"'/></td>";
 										str += "<td>" + n.Id + "</td>";
 										str += "<td>" + n.ClassId + "</td>";
 										str += "<td>" + n.Cname + "</td>";
