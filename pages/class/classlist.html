@@ -13,16 +13,9 @@
 		<script src="../../url.js"></script>
 
 		<script>
-			function deleAll(){
-				console.log("====");
-				console.log($(".vehicle"));
-				var arr = [];
 				var CheckList = [];
-				$(".vehicle").each(function(ii,vv){
-					arr[ii] = vv;
-					console.log(arr[ii]);
-					CheckList[ii] = arr[ii].name;
-				});
+				var i = 0;
+			function deleAll(){
 				$.ajax({
 					type: "POST",
 					//文件位置
@@ -36,18 +29,29 @@
 					},
 					//请求成功后要执行的函数，拼接html
 					success:function res(data){
+						if(data.Res.match("true")){
+							alert("批量删除成功");
+							window.location.href = "http://localhost/AttendanceFrontEnd/pages/class/classlist.html";
+						}else{
+							alert("批量删除失败");
+						}
 						console.log(data);
 					}
 				})
 			}
-
-
-			
-
-
-
-
-
+			function check(e){
+				if(e.value.match("false")){	
+					CheckList[i] = e.name;
+					i++;
+					e.value = true;
+				}else{
+					i--;
+					CheckList.splice(i, 1);
+					e.value = false;
+				}
+				console.log(e);
+				console.log(CheckList);
+			}
 
 		</script>
 		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
@@ -136,7 +140,8 @@
 									$.each(data, function (i, n) {
 										console.log(parseInt(parseInt(i) + 1));
 										str += "<tr>";
-										str += "<td><input type='checkbox' class='vehicle' name='" + parseInt(n.Id) +"' value='"+parseInt(n.Id)+"'/></td>";
+
+										str += "<td><input type='checkbox' class='vehicle' name='" + parseInt(n.Id) +"' value=false onclick='check(this)'/></td>";
 										str += "<td>" + n.Id + "</td>";
 										str += "<td>" + n.ClassId + "</td>";
 										str += "<td>" + n.Cname + "</td>";
