@@ -50,7 +50,8 @@
 					console.log(data);
 				if(data.Res.match("true")){
 					alert("删除成功");
-					window.location.href = "http://localhost/AttendanceFrontEnd/pages/company/employlist.html";
+					var url = globalFUrl + "pages/company/employlist.html";
+					window.location.href = url;
 				}else{
 					alert("删除失败");
 					}

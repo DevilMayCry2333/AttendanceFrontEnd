@@ -38,8 +38,8 @@
 					console.log(data);
 					if(data.Res.match("true")){
 						alert("修改成功");
-						window.location.href = document.referrer;
-						window.history.back(-1);
+						var url = globalFUrl + "pages/company/stationlist.html";
+						window.location.href = url;
 					}else{
 						alert("修改失败");
 					}

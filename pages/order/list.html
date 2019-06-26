@@ -72,7 +72,7 @@
 				</form>
 			</div> -->
 			<div class="weadmin-block">
-				<a class="layui-btn" href="http://localhost:8080/unnamed/">下载表格</a>
+				<a class="layui-btn">下载表格</a>
 				<!-- <span class="fr" style="line-height:40px">共有数据：88 条</span> -->
 			</div>
 			<table class="layui-table" id="memberList">
@@ -81,7 +81,6 @@
 						<th>
 							<div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
 						</th>
-						<th>ID</th>
 						<th>班次</th>
 						<th>员工姓名</th>
 						<th>早上上班时间</th>
@@ -107,11 +106,16 @@
 				 					str += "<tr>";
 				 					str += "<td></td>";
 									 // str += "<td>" + (i + 1) + "</td>";
-									 str += "<td>" + n.Id + "</td>";
 									 str += "<td>" + n.ClassId + "</td>";
 									 str += "<td>" + n.EmpName + "</td>";
-				 					str += "<td>" + n.EarlyTime + "</td>";
-				 					str += "<td>" + n.LateTime + "</td>";
+									 if(n.EarlyTime)
+										 str += "<td>" + n.EarlyTime + "</td>";
+									 else
+										str += "<td>" + "缺勤" + "</td>";
+									if(n.LateTime)
+										 str += "<td>" + n.LateTime + "</td>";
+									else
+										str += "<td>" + "缺勤" + "</td>";
 				 					str += "<td>" + n.AttendStatus + "</td>";
 				 					str += "</tr>";
 				 				});

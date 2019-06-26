@@ -24,7 +24,7 @@
                 //几个参数需要注意一下
                 type: "POST",//方法类型
                 dataType: "json",//预期服务器返回的数据类型
-                url: "http://localhost:8080/unnamed/DepartmentUpdateServlet" ,//url
+                url: globalUrl + "DepartmentUpdateServlet" ,//url
                 // contentType:"application/json",
                 // data:JSON.stringify($('form').serializeObject()),
                 data:{
@@ -39,7 +39,9 @@
                 success:function(data) {
 					console.log(data);
 					if(data.Res.match("true")){
+						var url = globalFUrl + "pages/company/departmentlist";
 						alert("修改成功");
+						window.location.href = url;
 						// window.location.href = "http://localhost/AttendanceFrontEnd/pages/company/departmentlist";
 					}else{
 						alert("修改失败");

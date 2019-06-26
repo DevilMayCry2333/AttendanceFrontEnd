@@ -27,7 +27,7 @@
                 //几个参数需要注意一下
                 type: "POST",//方法类型
                 dataType: "json",//预期服务器返回的数据类型
-                url: "http://localhost:8080/unnamed/DepartmentDelServlet" ,//url
+                url: globalUrl + "DepartmentDelServlet" ,//url
                 data:{
                  id :idB,
                 },
@@ -36,6 +36,8 @@
                 	if (result.Res.match("true")) {
 //						alert("删除成功");
 						window.location.reload(true); 
+						var url = globalFUrl + "pages/company/departmentlist.html";
+						window.location.href = url;
 						
 						// window.location.href = "http://localhost/AttendanceFrontEnd/pages/company/departmentlist.html";
                 	}

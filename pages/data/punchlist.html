@@ -49,7 +49,13 @@
 	<!--			</div>-->
 	<div class="weadmin-block">
 		<button class="layui-btn" onclick="WeAdminShow('添加用户','./punchadd.html',600,400)"><i class="layui-icon"></i>添加</button>
-		<a class="layui-btn" href="http://localhost:8080/unnamed/PunchDownloadServlet">下载表格</a>
+		<a class="layui-btn" id="down">下载表格</a>
+		<script>
+			$(function(){
+				var url = globalUrl + "PunchDownloadServlet";
+				$("#down").href = url;
+			})
+		</script>
 		<!-- <span class="fr" style="line-height:40px">共有数据：88 条</span> -->
 	</div>
 	<table class="layui-table" id="memberList">
@@ -62,7 +68,7 @@
 			<th>打卡人编码</th>
 			<th>打卡人姓名</th>
 			<th>打卡日期</th>
-			<th>操作</th>
+			<th>备注</th>
 
 		</tr>
 		</thead>
@@ -84,7 +90,6 @@
 									$.each(data, function (i, n) {
 										str += "<tr>";
 										str += "<td></td>";
-										str += "<td>" + n.Id + "</td>";
 										str += "<td>" + n.PunchId + "</td>";
 										str += "<td>" + n.ClassId + "</td>";
 										str += "<td>" + n.UserName + "</td>";

@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="../../static/css/weadmin.css">
 
 		<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+		<script src="../../url.js"></script>
 		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 		<!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -74,7 +75,7 @@
                                 //请求方式  
                                 type: "POST",
                                 //文件位置  
-                                url: "http://localhost:8080/unnamed/LeaveServlet",
+                                url: globalUrl + "LeaveServlet",
                                 //返回数据格式为json,也可以是其他格式如  
                                 dataType: "json",
                                 //请求成功后要执行的函数，拼接html  
