@@ -9,16 +9,48 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<link rel="stylesheet" href="../../static/css/font.css">
 		<link rel="stylesheet" href="../../static/css/weadmin.css">
+		<script src="../../url.js"></script>
+		<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 		<!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
 	      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-	    <![endif]-->
+		<![endif]-->
+		<script>
+			function add() {
+				console.log("123")
+				$.ajax({
+				//几个参数需要注意一下
+					type: "POST",//方法类型
+					dataType: "json",//预期服务器返回的数据类型
+					url: globalUrl + "PunchInsertServlet" ,//url
+				// contentType:"application/json",
+				// data:JSON.stringify($('form').serializeObject()),
+					data:{
+						PunchId : $("#punchId").val(),
+						ClassId : $("#classId").val(),
+						UserName : $("#punchName").val(),
+						PunchDate : $("#punchTime").val(),
+						Remarks : $("#punchRemark").val(),
+					},
+					success:function(data) {
+						console.log(data);
+						var url = globalFUrl + "pages/data/punchlist.html";
+						if(data.Res.match("true")){
+						alert("添加成功");
+						window.location.href = url;
+						}else{
+							alert("添加失败");
+						}
+					}
+				});
+			}
+		</script>
 	</head>
 
 	<body>
 				<div class="weadmin-body">
-					<form class="layui-form">
+					<!-- <form class="layui-form"> -->
 						<!-- <div class="layui-form-item">
 				    <label for="L_sex" class="layui-form-label">性别</label>
 				    <div class="layui-input-block" id="L_sex">
@@ -30,19 +62,40 @@
 
 						<div class="layui-form-item">
 							<label for="L_email" class="layui-form-label">
-								<span class="we-red">*</span>打卡人
+								<span class="we-red">*</span>打卡ID
 							</label>
 							<div class="layui-input-inline">
-								<input type="text" id="puncher" name="UserName" lay-verify="required|phone" autocomplete=""
+								<input type="text" id="punchId" name="UserName" lay-verify="required|phone" autocomplete=""
 									class="layui-input">
 							</div>
 						</div>
+
+						<div class="layui-form-item">
+							<label for="L_email" class="layui-form-label">
+								<span class="we-red">*</span>班次ID
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="classId" name="UserName" lay-verify="required|phone" autocomplete=""
+									class="layui-input">
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label for="L_email" class="layui-form-label">
+								<span class="we-red">*</span>打卡人
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="punchName" name="UserName" lay-verify="required|phone" autocomplete=""
+									class="layui-input">
+							</div>
+						</div>
+
 						<div class="layui-form-item">
 							<label for="L_email" class="layui-form-label">
 								<span class="we-red">*</span>打卡时间
 							</label>
 							<div class="layui-input-inline">
-								<input type="datetime-local" id="punchetime" name="PuncheDate" autocomplete="off" class="layui-input">
+								<input type="datetime-local" id="punchTime" name="PuncheDate" autocomplete="off" class="layui-input">
 							</div>
 
 						</div>
@@ -51,20 +104,18 @@
 								<span class="we-red"></span>备注
 							</label>
 							<div class="layui-input-inline" >
-								<input type="textarea" id="remarks" name="Remarks" lay-verify="required|pass" autocomplete="off" class="layui-input">
+								<input type="textarea" id="punchRemark" name="Remarks" lay-verify="required|pass" autocomplete="off" class="layui-input">
 							</div>
 							<!-- <div class="layui-form-mid layui-word-aux">
 						6到16个字符
 					</div> -->
 
-
-
 						<div class="layui-form-item">
 							<label for="L_repass" class="layui-form-label">
 							</label>
-							<button class="layui-btn" lay-filter="add" lay-submit="">确定</button>
+							<button class="layui-btn" onclick="add()">确定</button>
 						</div>
-					</form>
+					<!-- </form> -->
 				</div>
 				
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>

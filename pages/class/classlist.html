@@ -54,11 +54,6 @@
 			}
 
 		</script>
-		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-		<!--[if lt IE 9]>
-	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-	      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-	    <![endif]-->
 	</head>
 
 	<body>
@@ -75,24 +70,6 @@
 		<div id="testText">
 		</div>
 		<div class="weadmin-body">
-<!--			<div class="layui-row">-->
-<!--				<form class="layui-form layui-col-md12 we-search">-->
-<!--					员工搜索：-->
-<!--&lt;!&ndash;					<div class="layui-inline">&ndash;&gt;-->
-<!--&lt;!&ndash;						<input class="layui-input" placeholder="开始日" name="start" id="start">&ndash;&gt;-->
-<!--&lt;!&ndash;					</div>&ndash;&gt;-->
-<!--&lt;!&ndash;					<div class="layui-inline">&ndash;&gt;-->
-<!--&lt;!&ndash;						<input class="layui-input" placeholder="截止日" name="end" id="end">&ndash;&gt;-->
-<!--&lt;!&ndash;					</div>&ndash;&gt;-->
-<!--					<div class="layui-inline">-->
-<!--						<input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">-->
-<!--					</div>-->
-<!--					<button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>-->
-<!--				</form>-->
-<!--			</div>-->
-
-
-
 			<div class="weadmin-block">
 				<button class="layui-btn layui-btn-danger" onclick="deleAll()"><i class="layui-icon"></i>批量删除</button>
 				<button class="layui-btn" onclick="WeAdminShow('添加用户','./classadd.html',600,400)"><i class="layui-icon"></i>添加</button>
@@ -115,15 +92,6 @@
 				</thead>
 
 				<tbody>
-					<!-- <tr>
-						<th>11</th>
-						<th>22</th>
-						<th>33</th>
-						<th>44</th>
-						<th>55</th>
-						<th>66</th>
-						<th>77</th>
-					</tr> -->
 					<script>
 						$(function () {
 							$.ajax({
@@ -146,15 +114,7 @@
 										str += "<td>" + n.Cname + "</td>";
 										str += "<td>" + n.Mtime + "</td>";
 										str += "<td>" + n.Atime + "</td>";
-
-
-										// str +="<td class='layui-btn' onclick='WeAdminShow('修改用户','./class.html',600,400)''><i class='layui-icon'>&#xe63c;</i></td>"
-										// str +="<button class='layui-btn' onclick='WeAdminShow('添加用户','./classadd.html',600,400)''><i class='layui-icon'></i>添加</button>"
-										// str += "<td><div class='weadmin-block'><class='layui-btn'><onclick='WeAdminShow('添加用户','./classadd.html',600,400)''><i class='layui-icon'>&#xe63c;</i></a></div></td>"
-
-
 										str += "<td><a title=' 修改'' href='./classupdate.html?id=" + parseInt(n.Id) +"'><i class='layui-icon'>&#xe63c;</i></a></td>";
-
 										str += "</tr>";
 									});
 									$("#memberList").append(str);
@@ -162,79 +122,11 @@
 							});
 						});
 					</script>
-
-<!--					<tr data-id="1">-->
-<!--						<td>-->
-<!--							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id="1"><i class="layui-icon">&#xe605;</i></div>-->
-<!--						</td>-->
-<!--						<td>1</td>-->
-<!--						<td>小张</td>-->
-<!--						<td>男</td>-->
-<!--						<td>17600000000</td>-->
-<!--						<td>admin@mail.com</td>-->
-<!--						<td>北京市 海淀区</td>-->
-<!--						<td>2017-01-01 11:11:42</td>-->
-<!--						<td class="td-status">-->
-<!--							<span class="layui-btn layui-btn-normal layui-btn-xs">已启用</span></td>-->
-<!--						<td class="td-manage">-->
-<!--							<a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">-->
-<!--								<i class="layui-icon">&#xe601;</i>-->
-<!--							</a>-->
-<!--							<a title="编辑" onclick="WeAdminEdit('编辑','./edit.html', 1, 600, 400)" href="javascript:;">-->
-<!--								<i class="layui-icon">&#xe642;</i>-->
-<!--							</a>-->
-<!--							<a onclick="WeAdminShow('修改密码','./password.html',600,400)" title="修改密码" href="javascript:;">-->
-<!--								<i class="layui-icon">&#xe631;</i>-->
-<!--							</a>-->
-<!--							<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">-->
-<!--								<i class="layui-icon">&#xe640;</i>-->
-<!--							</a>-->
-<!--						</td>-->
-<!--					</tr>-->
-<!--					<tr data-id="2">-->
-<!--						<td>-->
-<!--							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>-->
-<!--						</td>-->
-<!--						<td>2</td>-->
-<!--						<td>小明</td>-->
-<!--						<td>女</td>-->
-<!--						<td>13000000000</td>-->
-<!--						<td>admin@mail.com</td>-->
-<!--						<td>北京市 海淀区</td>-->
-<!--						<td>2017-01-01 11:11:42</td>-->
-<!--						<td class="td-status">-->
-<!--							<span class="layui-btn layui-btn-normal layui-btn-xs">已启用</span></td>-->
-<!--						<td class="td-manage">-->
-<!--							<a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">-->
-<!--								<i class="layui-icon">&#xe601;</i>-->
-<!--							</a>-->
-<!--							<a title="编辑" onclick="WeAdminEdit('编辑','./edit.html', 2, 600, 400)" href="javascript:;">-->
-<!--								<i class="layui-icon">&#xe642;</i>-->
-<!--							</a>-->
-<!--							<a onclick="WeAdminShow('修改密码','./password.html',600,400)" title="修改密码" href="javascript:;">-->
-<!--								<i class="layui-icon">&#xe631;</i>-->
-<!--							</a>-->
-<!--							<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">-->
-<!--								<i class="layui-icon">&#xe640;</i>-->
-<!--							</a>-->
-<!--						</td>-->
-<!--					</tr>-->
 				</tbody>
 			</table>
-<!--			<div class="page">-->
-<!--				<div>-->
-<!--					<a class="prev" href="">&lt;&lt;</a>-->
-<!--					<a class="num" href="">1</a>-->
-<!--					<span class="current">2</span>-->
-<!--					<a class="num" href="">3</a>-->
-<!--					<a class="num" href="">489</a>-->
-<!--					<a class="next" href="">&gt;&gt;</a>-->
-<!--				</div>-->
-<!--			</div>-->
 		</div>
 		<!--<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
 		<script src="../../static/js/eleDel.js" type="text/javascript" charset="utf-8"></script>
 	</body>
-
 </html>

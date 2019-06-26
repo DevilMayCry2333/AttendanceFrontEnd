@@ -14,7 +14,8 @@
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
 	      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
 	    <![endif]-->
-	    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+		<script src="../../url.js"></script>
 	    		<script type="text/javascript">
 			function add() {
             console.log("123")
@@ -33,7 +34,14 @@
                   e : $("#e").val(),
                 },
                 success:function(data) {
-                	alert("添加成功");
+					var url = globalFUrl + "pages/company/stationlist.html";
+					if(data.Res.match("true")){
+							alert("添加成功");
+							window.location.href = url;
+					}else{
+						alert("添加失败");
+					}
+				
                 }
                 // success: function res(result) {
                 //     console.log(result);//打印服务端返回的数据(调试用)
@@ -57,7 +65,7 @@
 
 	<body>
 		<div class="weadmin-body">
-			<form class="layui-form">
+			<!-- <form class="layui-form"> -->
 				<div class="layui-form-item">
 					<label for="L_username" class="layui-form-label">
 		                <span class="we-red">*</span>岗位编码
@@ -156,9 +164,9 @@
 				<div class="layui-form-item">
 					<label for="L_repass" class="layui-form-label">
               </label>
-					<button class="layui-btn" lay-filter="add" lay-submit="" onclick="add()">确定</button>
+					<button class="layui-btn" lay-filter="add" onclick="add()">确定</button>
 				</div>
-			</form>
+			<!-- </form> -->
 		</div>
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
 		
