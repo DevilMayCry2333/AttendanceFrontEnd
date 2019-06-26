@@ -13,16 +13,9 @@
 		<script src="../../url.js"></script>
 
 		<script>
-			function deleAll(){
-				console.log("====");
-				console.log($(".vehicle"));
-				var arr = [];
 				var CheckList = [];
-				$(".vehicle").each(function(ii,vv){
-					arr[ii] = vv;
-					console.log(arr[ii]);
-					CheckList[ii] = arr[ii].name;
-				});
+				var i = 0;
+			function deleAll(){
 				$.ajax({
 					type: "POST",
 					//文件位置
@@ -39,6 +32,19 @@
 						console.log(data);
 					}
 				})
+			}
+			function check(e){
+				if(e.value.match("false")){	
+					CheckList[i] = e.name;
+					i++;
+					e.value = true;
+				}else{
+					i--;
+					CheckList.splice(i, 1);
+					e.value = false;
+				}
+				console.log(e);
+				console.log(CheckList);
 			}
 
 
@@ -136,7 +142,7 @@
 									$.each(data, function (i, n) {
 										console.log(parseInt(parseInt(i) + 1));
 										str += "<tr>";
-										str += "<td><input type='checkbox' class='vehicle' name='" + parseInt(n.Id) +"' value=true /></td>";
+										str += "<td><input type='checkbox' class='vehicle' name='" + parseInt(n.Id) +"' value=false onclick='check(this)'/></td>";
 										str += "<td>" + n.Id + "</td>";
 										str += "<td>" + n.ClassId + "</td>";
 										str += "<td>" + n.Cname + "</td>";
