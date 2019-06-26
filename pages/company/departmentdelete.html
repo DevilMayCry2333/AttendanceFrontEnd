@@ -19,7 +19,7 @@
 		<script type="text/javascript">
 			
             // console.log($("#demo").val());
-			function add() {
+			function del() {
 			 var idB = getParams("id");
 			 console.log(idB);
 
@@ -34,8 +34,8 @@
                 success:function(result) {
 					console.log(result);
                 	if (result.Res.match("true")) {
-						alert("删除成功");
-						window.location.href = "http://localhost/AttendanceFrontEnd/pages/company/departmentlist";
+//						alert("删除成功");
+						window.location.reload(true); 
 						
 						// window.location.href = "http://localhost/AttendanceFrontEnd/pages/company/departmentlist.html";
                 	}
@@ -54,7 +54,7 @@
 
 
 
-					<button class="layui-btn" lay-filter="add" onclick="add()">确定</button>
+					<button class="layui-btn" lay-filter="add" onclick="del()">确定</button>
 
 			<!-- </form> -->
 		</div>

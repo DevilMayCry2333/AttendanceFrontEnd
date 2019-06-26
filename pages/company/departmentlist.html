@@ -11,6 +11,79 @@
 	<link rel="stylesheet" href="../../static/css/weadmin.css">
 		<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 		<script src="../../url.js"></script>
+				<script>
+				var CheckList = [];
+				var i = 0;
+			function deleAll(){
+				$.ajax({
+					type: "POST",
+					//文件位置
+					url: globalUrl + "DepartmentAllDelServlet",
+					//返回数据格式为json,也可以是其他格式如
+					dataType: "json",
+					traditional: true,
+
+					data:{
+						"DelList":CheckList
+					},
+					//请求成功后要执行的函数，拼接html
+					success:function res(data){
+						if(data.Res.match("true")){
+							alert("批量删除成功");
+							window.location.href = "http://localhost/AttendanceFrontEnd/pages/company/departmentlist.html";
+						}else{
+							alert("批量删除失败");
+						}
+						console.log(data);
+					}
+				})
+			}
+			function check(e){
+				if(e.value.match("false")){	
+					CheckList[i] = e.name;
+					i++;
+					e.value = true;
+				}else{
+					i--;
+					CheckList.splice(i, 1);
+					e.value = false;
+				}
+				console.log(e);
+				console.log(CheckList);
+			}
+
+		</script>
+
+
+		<script type="text/javascript">
+			
+            // console.log($("#demo").val());
+			function del(id) {
+			 console.log(id);
+
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/unnamed/DepartmentDelServlet" ,//url
+                data:{
+                 id :id,
+                },
+                success:function(result) {
+					console.log(result);
+                	if (result.Res.match("true")) {
+						alert("删除成功");
+						 window.location.reload();
+						
+						// window.location.href = "http://localhost/AttendanceFrontEnd/pages/company/departmentlist.html";
+                	}
+                }
+            });
+        }
+
+		</script>
+
+
 	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 	<!--[if lt IE 9]>
 	<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -48,7 +121,7 @@
 	<!--				</form>-->
 	<!--			</div>-->
 	<div class="weadmin-block">
-		<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+		<button class="layui-btn layui-btn-danger" onclick="deleAll()"><i class="layui-icon"></i>批量删除</button>
 		<button class="layui-btn" onclick="WeAdminShow('添加用户','./departmentadd.html',600,400)"><i class="layui-icon"></i>添加</button>
 		<span class="fr" style="line-height:40px">共有数据：88 条</span>
 	</div>
@@ -86,7 +159,7 @@
                                     var str;
                                     $.each(data, function (i, n) {
                                         str += "<tr>";
-                                        str += "<td></td>";
+										str += "<td><input type='checkbox' class='vehicle' name='" + parseInt(n.Id) +"' value=false onclick='check(this)'/></td>";
 // <input name='delid' type='checkbox' class='noborder' value='"+ n.Id+"'>
                                         str += "<td>" + n.Id + "</td>";
                                         str += "<td>" + n.DepartmentId + "</td>";
@@ -96,10 +169,16 @@
                                         str += "<td>" + n.Sdepartment+ "</td>";
 
 										// str += "<td><a title=' 修改'' href='./departmentupdate.html?id=" + n.Id +"'><i class='layui-icon'>&#xe63c;</i></a><a title=' 修改'' href='./departmentdelete.html?id=" + n.Id +"'><i class='layui-icon'>&#xe640;</i></a></td>";
-
 										// str +="<td><a style='cursor:pointer' class=‘layui-btn’ onclick=WeAdminEdit('删除','./departmentdelete.html',id=" +n.Id +",130,130)>删除</a></td>"
+										str +="<td style='cursor:pointer'><a title=' 修改'' onclick=WeAdminShow('修改','./departmentupdate.html?id=" + n.Id +"',600,400)><i class='layui-icon'>&#xe63c;</i></a><a class=‘layui-btn’ onclick='del("+ n.Id + ")'><i class='layui-icon'>&#xe640;</i></a></td>"
 
-										str +="<td style='cursor:pointer'><a title=' 修改'' onclick=WeAdminShow('修改','./departmentupdate.html?id=" + n.Id +"',600,400)><i class='layui-icon'>&#xe63c;</i></a><a class=‘layui-btn’ onclick=WeAdminShow('删除','./departmentdelete.html?id=" + n.Id +"',130,130)><i class='layui-icon'>&#xe640;</i></a></td>"
+
+
+
+
+
+
+										// str +="<td style='cursor:pointer'><a title=' 修改'' onclick=WeAdminShow('修改','./departmentupdate.html?id=" + n.Id +"',600,400)><i class='layui-icon'>&#xe63c;</i></a><a class=‘layui-btn’ onclick=WeAdminShow('删除','./departmentdelete.html?id=" + n.Id +"',130,130)><i class='layui-icon'>&#xe640;</i></a></td>"
 
 
 

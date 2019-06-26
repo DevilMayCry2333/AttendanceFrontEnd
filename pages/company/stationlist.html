@@ -11,6 +11,78 @@
 	<link rel="stylesheet" href="../../static/css/weadmin.css">
 	<script src="../../url.js"></script>
 		<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+		<script>
+				var CheckList = [];
+				var i = 0;
+			function deleAll(){
+				$.ajax({
+					type: "POST",
+					//文件位置
+					url: globalUrl + "StationAllDelServlet",
+					//返回数据格式为json,也可以是其他格式如
+					dataType: "json",
+					traditional: true,
+
+					data:{
+						"DelList":CheckList
+					},
+					//请求成功后要执行的函数，拼接html
+					success:function res(data){
+						if(data.Res.match("true")){
+							alert("批量删除成功");
+							window.location.href = "http://localhost/AttendanceFrontEnd/pages/company/stationlist.html";
+						}else{
+							alert("批量删除失败");
+						}
+						console.log(data);
+					}
+				})
+			}
+			function check(e){
+				if(e.value.match("false")){	
+					CheckList[i] = e.name;
+					i++;
+					e.value = true;
+				}else{
+					i--;
+					CheckList.splice(i, 1);
+					e.value = false;
+				}
+				console.log(e);
+				console.log(CheckList);
+			}
+
+		</script>
+		<script type="text/javascript">
+			
+            // console.log($("#demo").val())
+			function del(id) {
+
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: globalUrl + "StationDelServlet" ,//url
+                data:{
+                 id :id,
+                },
+                success:function(data) {
+					console.log(data);
+					
+					if(data.Res.match("true")){
+						alert("删除成功");
+						window.location.reload();
+						// window.location.href = document.referrer;
+						// window.history.back(-1);
+					}else{
+						alert("删除失败");
+					}
+				
+                }
+            });
+        }
+
+		</script>
 	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 	<!--[if lt IE 9]>
 	<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -48,7 +120,7 @@
 	<!--				</form>-->
 	<!--			</div>-->
 	<div class="weadmin-block">
-		<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+		<button class="layui-btn layui-btn-danger" onclick="deleAll()"><i class="layui-icon"></i>批量删除</button>
 		<button class="layui-btn" onclick="WeAdminShow('添加用户','./stationadd.html',600,400)"><i class="layui-icon"></i>添加</button>
 		<span class="fr" style="line-height:40px">共有数据：88 条</span>
 	</div>
@@ -93,7 +165,7 @@
 									var str;
 									$.each(data, function (i, n) {
 										str += "<tr>";
-										str += "<td><input type='checkbox' class='vehicle' name='" + parseInt(n.Id) +"' value=true /></td>";
+										str += "<td><input type='checkbox' class='vehicle' name='" + parseInt(n.Id) +"' value=false onclick='check(this)'/></td>";
 										str += "<td>" + n.Id + "</td>";
 										str += "<td>" + n.JobId + "</td>";
 										str += "<td>" + n.Pname + "</td>";
@@ -102,7 +174,7 @@
 										str += "<td>" + n.Jcategory + "</td>";
 
 										// str += "<td><a title=' 修改'' href='./stationupdate.html?id=" + n.Id +"'><i class='layui-icon'>&#xe63c;</i></a></td>";
-										str +="<td style='cursor:pointer'><a title=' 修改'' onclick=WeAdminShow('修改','./stationupdate.html?id=" + n.Id +"',600,400)><i class='layui-icon'>&#xe63c;</i></a><a class=‘layui-btn’ onclick=WeAdminShow('删除','./stationdelete.html?id=" + n.Id +"',130,130)><i class='layui-icon'>&#xe640;</i></a></td>"
+										str +="<td style='cursor:pointer'><a title=' 修改'' onclick=WeAdminShow('修改','./stationupdate.html?id=" + n.Id +"',600,400)><i class='layui-icon'>&#xe63c;</i></a><a class=‘layui-btn’ onclick='del("+ n.Id + ")'><i class='layui-icon'>&#xe640;</i></a></td>"
 
 
 										str += "</tr>";
