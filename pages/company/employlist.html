@@ -154,7 +154,7 @@
                     </script>
 				</tbody>
 			</table>
-			<div id="test1"></div>
+			
 
 			<script>
 				var mycount = 0;
@@ -164,7 +164,7 @@
 					$.ajax({
 						type:'POST',
 						dataType:'json',
-						url: globalUrl + "EmpCountServlet",
+						url: globalUrl + "EmpCountServlet", 	
 						success:function(res){
 							console.log(res);
 							mycount = res.Count;
@@ -221,6 +221,7 @@
 
 				});
 			</script>
+			<div id="test1"></div>
 
 		</div>
 		<!--<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
