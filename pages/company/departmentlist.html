@@ -66,7 +66,7 @@
                 //几个参数需要注意一下
                 type: "POST",//方法类型
                 dataType: "json",//预期服务器返回的数据类型
-                url: "http://localhost:8080/unnamed/DepartmentDelServlet" ,//url
+                url: globalUrl + "DepartmentDelServlet" ,//url
                 data:{
                  id :id,
                 },
@@ -124,6 +124,15 @@
 	<div class="weadmin-block">
 		<button class="layui-btn layui-btn-danger" onclick="deleAll()"><i class="layui-icon"></i>批量删除</button>
 		<button class="layui-btn" onclick="WeAdminShow('添加用户','./departmentadd.html',600,400)"><i class="layui-icon"></i>添加</button>
+				<script>
+					function Down() {
+						var Url = globalUrl + "DownloadDepartmentServlet";
+						window.location.href = Url;
+					}
+				</script>
+
+				<button class="layui-btn" id="down" onclick="Down()">下载表格</a>
+
 <!-- 		<span class="fr" style="line-height:40px">共有数据：88 条</span> -->
 	</div>
 	<table class="layui-table">
