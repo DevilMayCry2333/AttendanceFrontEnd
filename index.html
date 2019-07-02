@@ -12,6 +12,10 @@
 		<link rel="stylesheet" href="./static/css/font.css">
 		<link rel="stylesheet" href="./static/css/weadmin.css">
 		<link rel="stylesheet" href="./static/UINew/css/style.css">
+		<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+		<script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+		<script src="./url.js"></script>
+			
 		<script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
 
 
@@ -19,7 +23,24 @@
 
 	<body>
 		<!-- 顶部开始 -->
-
+		<script>
+			window.onbeforeunload=function(e){
+				console.log($.cookie('username'));
+				$.ajax({
+					url: globalUrl + "UnLoginServlet",
+					dataType:'json',
+					data:{
+						username:$.cookie('username'),
+					},success:function(res){
+						console.log(res);
+					}
+				})
+				// console.log("离开");
+			// 　　var e = window.event||e;
+			// 　　e.returnValue=("确定离开当前页面吗？");
+				// console.log(e.returnValue);
+			}
+		</script>
 		<div class="container">
 			<div class="logo">
 				<a href="./index.html">考勤系统 v1.0</a>
