@@ -24,8 +24,18 @@
 	<body>
 		<!-- 顶部开始 -->
 		<script>
+			window.onload = function(e){
+				console.log("On Load");
+				if(!$.cookie('username')){
+					alert("您还未登录，请登录");
+					var url = globalFUrl + "login.html";
+					window.location.href = url;
+				}
+
+			},
 			window.onbeforeunload=function(e){
 				console.log($.cookie('username'));
+				// console.log("离开");
 				$.ajax({
 					url: globalUrl + "UnLoginServlet",
 					dataType:'json',
@@ -33,11 +43,13 @@
 						username:$.cookie('username'),
 					},success:function(res){
 						console.log(res);
+					},complete:function(res){
 					}
 				})
-				// console.log("离开");
+				  $.cookie('username', '', { expires: -1 });
 			// 　　var e = window.event||e;
 			// 　　e.returnValue=("确定离开当前页面吗？");
+
 				// console.log(e.returnValue);
 			}
 		</script>
