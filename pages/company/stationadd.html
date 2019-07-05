@@ -9,6 +9,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<link rel="stylesheet" href="../../static/css/font.css">
 		<link rel="stylesheet" href="../../static/css/weadmin.css">
+		<link rel="stylesheet" href="../../static/layui/css/layui.css">
+		<script src="../../static/layui/layui.all.js"></script>
 		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 		<!--[if lt IE 9]>
 	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -18,7 +20,7 @@
 		<script src="../../url.js"></script>
 	    		<script type="text/javascript">
 			function add() {
-            console.log("123")
+            console.log("123");
             $.ajax({
                 //几个参数需要注意一下
                 type: "POST",//方法类型
@@ -66,6 +68,7 @@
 	<body>
 		<div class="weadmin-body">
 			<!-- <form class="layui-form"> -->
+				<div class="layui-form">
 				<div class="layui-form-item">
 					<label for="L_username" class="layui-form-label">
 		                <span class="we-red">*</span>岗位编码
@@ -166,6 +169,7 @@
               </label>
 					<button class="layui-btn" lay-filter="add" onclick="add()">确定</button>
 				</div>
+			</div>
 			<!-- </form> -->
 		</div>
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>

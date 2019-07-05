@@ -36,17 +36,17 @@
 			window.onbeforeunload=function(e){
 				console.log($.cookie('username'));
 				// console.log("离开");
-				$.ajax({
-					url: globalUrl + "UnLoginServlet",
-					dataType:'json',
-					data:{
-						username:$.cookie('username'),
-					},success:function(res){
-						console.log(res);
-					},complete:function(res){
-					}
-				})
-				  $.cookie('username', '', { expires: -1 });
+				// $.ajax({
+				// 	url: globalUrl + "UnLoginServlet",
+				// 	dataType:'json',
+				// 	data:{
+				// 		username:$.cookie('username'),
+				// 	},success:function(res){
+				// 		console.log(res);
+				// 	},complete:function(res){
+				// 	}
+				// })
+				//   $.cookie('username', '', { expires: -1 });
 			// 　　var e = window.event||e;
 			// 　　e.returnValue=("确定离开当前页面吗？");
 

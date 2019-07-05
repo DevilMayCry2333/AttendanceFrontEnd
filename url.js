@@ -3,5 +3,5 @@
 var globalUrl = "http://localhost:8080/unnamed/";
 
 var globalFUrl = "http://localhost/AttendanceFrontEnd/";
-// var globalFUrl = "http://youkaiyu.com/AttendanceFrontEnd/";
+// var globalFUrl = "https://youkaiyu.com/AttendanceFrontEnd/";
 

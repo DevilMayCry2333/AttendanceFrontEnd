@@ -14,13 +14,11 @@
 		<script src="../../static/layui/layui.all.js"></script>
 		<script src="../../url.js"></script>
 		<script>
-				var CheckList = [];
-				var i = 0;
 			function deleAll(){
 				$.ajax({
 					type: "POST",
 					//文件位置
-					url: globalUrl + "Servlet",
+					url: globalUrl + "EmployAllDelServlet",
 					//返回数据格式为json,也可以是其他格式如
 					dataType: "json",
 					traditional: true,
@@ -41,6 +39,8 @@
 					}
 				})
 			}
+					var CheckList = [];
+					var i = 0;
 			function check(e){
 				if(e.value.match("false")){	
 					CheckList[i] = e.name;
@@ -143,7 +143,7 @@
                                     var str;
                                     $.each(data, function (i, n) {
 										str += "<tr>";
-										str += "<td><input type='checkbox' class='vehicle' name='" + parseInt(n.Id) +"' value=true /></td>";
+										str += "<td><input type='checkbox' class='vehicle' name='" + parseInt(n.Id) +"' value=false onclick='check(this)'/></td>";
                                         str += "<td>" + n.Id + "</td>";
                                         str += "<td>" + n.EmployId + "</td>";
                                         str += "<td>" + n.UserName + "</td>";

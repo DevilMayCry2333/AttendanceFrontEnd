@@ -122,14 +122,57 @@
 	<!--				</form>-->
 	<!--			</div>-->
 	<div class="weadmin-block">
-		<button class="layui-btn layui-btn-danger" onclick="deleAll()"><i class="layui-icon"></i>批量删除</button>
-		<button class="layui-btn" onclick="WeAdminShow('添加用户','./departmentadd.html',600,400)"><i class="layui-icon"></i>添加</button>
-				<script>
+						<script>
 					function Down() {
 						var Url = globalUrl + "DownloadDepartmentServlet";
 						window.location.href = Url;
 					}
+								function deleAll(){
+				$.ajax({
+					type: "POST",
+					//文件位置
+					url: globalUrl + "EmployAllDelServlet",
+					//返回数据格式为json,也可以是其他格式如
+					dataType: "json",
+					traditional: true,
+
+					data:{
+						"DelList":CheckList
+					},
+					//请求成功后要执行的函数，拼接html
+					success:function res(data){
+						if(data.Res.match("true")){
+							alert("批量删除成功");
+							var url = globalFUrl + "pages/company/employlist.html";
+							window.location.href = url;
+						}else{
+							alert("批量删除失败");
+						}
+						console.log(data);
+					}
+				})
+			}
+					var CheckList = [];
+					var i = 0;
+			function check(e){
+				if(e.value.match("false")){	
+					CheckList[i] = e.name;
+					i++;
+					e.value = true;
+				}else{
+					i--;
+					CheckList.splice(i, 1);
+					e.value = false;
+				}
+				console.log(e);
+				console.log(CheckList);
+			}
+			
 				</script>
+				
+		<button class="layui-btn layui-btn-danger" onclick="deleAll()"><i class="layui-icon"></i>批量删除</button>
+		<button class="layui-btn" onclick="WeAdminShow('添加用户','./departmentadd.html',600,400)"><i class="layui-icon"></i>添加</button>
+
 
 				<button class="layui-btn" id="down" onclick="Down()">下载表格</a>
 
