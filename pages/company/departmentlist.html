@@ -16,6 +16,8 @@
 				var CheckList = [];
 				var i = 0;
 			function deleAll(){
+				console.log("bumen");
+				console.log(CheckList);
 				$.ajax({
 					type: "POST",
 					//文件位置
@@ -31,7 +33,8 @@
 					success:function res(data){
 						if(data.Res.match("true")){
 							alert("批量删除成功");
-							window.location.href = "http://localhost/AttendanceFrontEnd/pages/company/departmentlist.html";
+							var url = globalFUrl + "pages/company/departmentlist.html";
+							window.location.href = url;
 						}else{
 							alert("批量删除失败");
 						}
@@ -40,6 +43,7 @@
 				})
 			}
 			function check(e){
+				console.log("bumen");
 				if(e.value.match("false")){	
 					CheckList[i] = e.name;
 					i++;
@@ -131,11 +135,10 @@
 				$.ajax({
 					type: "POST",
 					//文件位置
-					url: globalUrl + "EmployAllDelServlet",
+					url: globalUrl + "DepartmentAllDelServlet",
 					//返回数据格式为json,也可以是其他格式如
 					dataType: "json",
 					traditional: true,
-
 					data:{
 						"DelList":CheckList
 					},
@@ -143,7 +146,7 @@
 					success:function res(data){
 						if(data.Res.match("true")){
 							alert("批量删除成功");
-							var url = globalFUrl + "pages/company/employlist.html";
+							var url = globalFUrl + "pages/company/departmentlist.html";
 							window.location.href = url;
 						}else{
 							alert("批量删除失败");

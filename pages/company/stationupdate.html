@@ -16,7 +16,17 @@
 	    <![endif]-->
 		<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 		<script src="../../url.js"></script>
-	    <script type="text/javascript">
+		<script type="text/javascript">
+		
+		
+					function GetQueryString(name)
+					{
+					var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+					var r = window.location.search.substr(1).match(reg);//search,查询？后面的参数，并匹配正则
+					if(r!=null)return unescape(r[2]); return null;
+					}
+
+
 			function add() {
             console.log("123")
             $.ajax({
@@ -27,7 +37,7 @@
                 // contentType:"application/json",
                 // data:JSON.stringify($('form').serializeObject()),
                 data:{
-                 id :$("#demo").val(),
+                 id :GetQueryString("id"),
                   a : $("#a").val(),
                   b : $("#b").val(),
                   c : $("#c").val(),
@@ -107,9 +117,9 @@
 						<!-- <input type="text" id="L_email" name="email" autocomplete="off" class="layui-unselect"> -->
 						<select name="city" lay-verify="" id="c">
 							<option value="">请选择一个部门</option>
-							<option value="0">销售</option>
-							<option value="1">管理</option>
-							<option value="2">技术</option>
+							<option value="销售">销售</option>
+							<option value="管理">管理</option>
+							<option value="技术">技术</option>
 						</select>
 					</div>
 
@@ -123,9 +133,9 @@
 						<!-- <input type="text" id="L_email" name="email" autocomplete="off" class="layui-unselect"> -->
 						<select name="city" lay-verify="" id="d">
 							<option value="">请选择一个上级</option>
-							<option value="0">三无软件技术总监</option>
-							<option value="1">三无软件CEO</option>
-							<option value="2">三无软件董事</option>
+							<option value="三无软件技术总监">三无软件技术总监</option>
+							<option value="三无软件CEO">三无软件CEO</option>
+							<option value="三无软件董事">三无软件董事</option>
 						</select>
 					</div>
 
@@ -139,14 +149,37 @@
 						<!-- <input type="text" id="L_email" name="email" autocomplete="off" class="layui-unselect"> -->
 						<select name="city" lay-verify="" id="e">
 							<option value="">请选择一个类别</option>
-							<option value="0">技术类</option>
-							<option value="1">管理类</option>
-							<option value="2">我就是董事长</option>
+							<option value="技术类">技术类</option>
+							<option value="管理类">管理类</option>
+							<option value="我就是董事长">我就是董事长</option>
 						</select>
 					</div>
 
 				</div>
 
+				<script>
+					console.log(GetQueryString("id"));
+					$.ajax({
+						url:globalUrl + "QueryUpdateServlet",
+						dataType:"json",
+						data:{
+							id:GetQueryString("id"),
+						},success:function(res){
+							var a = document.getElementById("a");
+							a.setAttribute("placeholder",res.JobId);
+							var b = document.getElementById("b");
+							b.setAttribute("placeholder",res.Pname);
+							console.log(res);
+						}
+					})
+						// console.log("====");
+						// console.log(document.getElementById("e")[2].selected);
+						// console.log(document.getElementById("e")[2]);
+						// var a = document.getElementById("e")[2];
+						// a.setAttribute("selected","");
+						// console.log(document.getElementById("e")[2].selected);
+						// console.log($("#e").val());
+				</script>
 <!-- 				<div class="layui-form-item">
 					<label for="L_pass" class="layui-form-label">
                   <span class="we-red">*</span>密码
